@@ -86,9 +86,8 @@ Michael,+44-7700-900123,Potential high-value client
 - `GET /api/upload/distributions` - Get current distributions
 
 ## Project Structure
-
-agent-distribution-system/
 ```
+agent-distribution-system/
 ├── backend/
 │ ├── config/
 │ ├── controllers/
