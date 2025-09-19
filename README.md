@@ -22,35 +22,28 @@ A MERN stack application for managing agents and distributing leads from CSV/Exc
 cd backend
 npm install
 
-text
 
 Create `.env` file:
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/agent-distribution
 JWT_SECRET=your_super_secret_jwt_key_here
 
-text
-
 Start backend:
 npm run dev
 
-text
 
 ### Frontend Setup
 cd frontend
 npm install
 
-text
 
 Create `.env` file:
 VITE_API_URL=http://localhost:5000
 
-text
 
 Start frontend:
 npm run dev
 
-text
 
 ## Usage
 
@@ -68,7 +61,6 @@ John,+91-9876543210,Interested in premium package
 Sarah,+1-555-0123,Called twice - very interested
 Michael,+44-7700-900123,Potential high-value client
 
-text
 
 ## Distribution Logic
 
@@ -104,14 +96,12 @@ agent-distribution-system/
 │ └── package.json
 └── README.md
 
-text
 
 ## Development
 
 Backend development:
 cd backend && npm run dev
 
-text
 
 Frontend development:
 cd frontend && npm run dev
