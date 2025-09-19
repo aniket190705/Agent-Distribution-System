@@ -19,31 +19,39 @@ A MERN stack application for managing agents and distributing leads from CSV/Exc
 ## Installation
 
 ### Backend Setup
+```
 cd backend
 npm install
-
+```
 
 Create `.env` file:
+```
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/agent-distribution
 JWT_SECRET=your_super_secret_jwt_key_here
+```
 
 Start backend:
+```
 npm run dev
-
+```
 
 ### Frontend Setup
+```
 cd frontend
 npm install
+```
 
 
 Create `.env` file:
+```
 VITE_API_URL=http://localhost:5000
-
+```
 
 Start frontend:
+```
 npm run dev
-
+```
 
 ## Usage
 
@@ -78,7 +86,7 @@ Michael,+44-7700-900123,Potential high-value client
 - `GET /api/upload/distributions` - Get current distributions
 
 ## Project Structure
-
+```
 agent-distribution-system/
 ├── backend/
 │ ├── config/
@@ -95,13 +103,17 @@ agent-distribution-system/
 │ │ └── App.jsx
 │ └── package.json
 └── README.md
-
+```
 
 ## Development
 
 Backend development:
+```
 cd backend && npm run dev
+```
 
 
 Frontend development:
+```
 cd frontend && npm run dev
+```
