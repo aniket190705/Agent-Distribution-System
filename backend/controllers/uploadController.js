@@ -114,14 +114,16 @@ const distributeLeads = (leads, agents) => {
 // @access  Private
 const uploadFile = async (req, res) => {
   try {
-    // Get all agents
-    const agents = await Agent.find().limit(5);
+    // Get agents for the current user only
+    const agents = await Agent.find({ createdBy: req.user._id }).limit(5);
 
     if (agents.length < 5) {
       return res.status(400).json({
-        message: `You need exactly 5 agents to distribute leads. Currently have ${agents.length} agents.`
+        message: `You need exactly 5 agents to distribute leads. Currently have ${agents.length} agents in your team.`
       });
     }
+
+    // Rest of the code remains the same...
 
     const file = req.file;
     if (!file) {

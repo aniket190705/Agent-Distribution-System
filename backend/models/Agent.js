@@ -23,10 +23,16 @@ const agentSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 6
+    },
+    createdBy: {  // Add this field
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 }, {
     timestamps: true
 });
+
 
 // Hash password before saving
 agentSchema.pre('save', async function (next) {

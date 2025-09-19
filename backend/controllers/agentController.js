@@ -3,6 +3,9 @@ const Agent = require('../models/Agent');
 // @desc    Add new agent
 // @route   POST /api/agents
 // @access  Private
+// @desc    Add new agent
+// @route   POST /api/agents
+// @access  Private
 const addAgent = async (req, res) => {
     try {
         const { name, email, mobile, password } = req.body;
@@ -14,18 +17,22 @@ const addAgent = async (req, res) => {
             });
         }
 
-        // Check if agent already exists
-        const existingAgent = await Agent.findOne({ email });
+        // Check if agent already exists for this user
+        const existingAgent = await Agent.findOne({
+            email,
+            createdBy: req.user._id  // Check within user's agents only
+        });
         if (existingAgent) {
-            return res.status(400).json({ message: 'Agent with this email already exists' });
+            return res.status(400).json({ message: 'Agent with this email already exists in your team' });
         }
 
-        // Create new agent
+        // Create new agent with user reference
         const agent = new Agent({
             name,
             email,
             mobile,
-            password
+            password,
+            createdBy: req.user._id  // Add user reference
         });
 
         await agent.save();
@@ -43,18 +50,19 @@ const addAgent = async (req, res) => {
     }
 };
 
-// @desc    Get all agents
+// @desc    Get all agents for the logged-in user
 // @route   GET /api/agents
 // @access  Private
 const getAgents = async (req, res) => {
     try {
-        const agents = await Agent.find().select('-password');
+        const agents = await Agent.find({ createdBy: req.user._id }).select('-password');
         res.json({ agents });
     } catch (error) {
         console.error('Get agents error:', error);
         res.status(500).json({ message: 'Server error fetching agents' });
     }
 };
+
 
 module.exports = {
     addAgent,
